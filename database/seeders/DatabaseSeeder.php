@@ -13,11 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-            $this->call(ProfileSeeder::class);
-          //  $this->call(PostSeeder::class);
-
-            \App\Models\Post::factory(3)
-            ->has(\App\Models\Comment::factory()->count(3))
-            ->create();
+            $this->call(UserSeeder::class);
+            $this->call(PostSeeder::class);
+            $this->call(CommentSeeder::class);
+            
     }
 }

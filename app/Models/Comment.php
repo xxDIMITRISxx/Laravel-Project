@@ -23,8 +23,8 @@ class Comment extends Model
         return $this->belongsTo('App\Models\Post');
     }
 
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo('App\Models\Profile');
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -26,8 +26,8 @@ class Post extends Model
      * many-to-one relation with profiles
      * many posts, one profile
      */
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo('App\Models\Profile');
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -25,7 +25,7 @@ class CommentFactory extends Factory
         return [
             'description' => $this->faker->text(),
             'post_id'=>\App\Models\Post::inRandomOrder()->first()->id,
-            'profile_id'=>\App\Models\Profile::inRandomOrder()->first()->id,
+            'user_id'=>\App\Models\User::inRandomOrder()->first()->id,
         ];
     }
 }

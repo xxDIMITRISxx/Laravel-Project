@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Profile;
+use App\Models\Comment;
 
-class ProfileSeeder extends Seeder
+class CommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
-        $profiles = Profile::factory()->count(5)->create();
+        $comments = Comment::factory()->count(10)->create();
     }
 }
