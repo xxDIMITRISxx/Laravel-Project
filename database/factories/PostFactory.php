@@ -23,7 +23,8 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-
+            
+            'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             'description' => $this->faker->text(),
             'user_id'=>\App\Models\User::inRandomOrder()->first()->id,
         ];
