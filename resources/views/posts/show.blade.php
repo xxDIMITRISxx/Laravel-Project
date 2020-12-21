@@ -9,5 +9,13 @@
         <li>Title: {{ $post->title }}</li>
         <li>{{ $post->description }}</li>
     </ul>
+
+    <form method="POST"
+        action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button> Delete</button>
+    </form>
+
     <a href="{{ route('posts.index' )}}">Back</a>
 @endsection
