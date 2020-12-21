@@ -9,4 +9,5 @@
         <li>Title: {{ $post->title }}</li>
         <li>{{ $post->description }}</li>
     </ul>
+    <a href="{{ route('posts.index' )}}">Back</a>
 @endsection

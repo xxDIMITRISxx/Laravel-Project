@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('posts.posts', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -36,7 +36,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validateData = $request->validate([
+            'title'=> 'required|max:50',
+            'post'=> 'required|max:500',
+            'user_id'=> 'required|numeric'
+        ]);
+
+        $p = new Post;
+
+        $p->title = $validateData['title'];
+        $p->description = $validateData['post'];
+        $p->user_id = $validateData['user_id'];
+        $p->save();
+
+        session()->flash('message', 'Post was created.');
+
+        return redirect()->route('posts.index');
+        
     }
 
     /**
@@ -48,7 +65,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.singlePost', ['post' => $post]);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
