@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Posts')
+@section('title', 'Where can i find?')
 
 @section('content')
     <p><h3> Posts</h3></p>

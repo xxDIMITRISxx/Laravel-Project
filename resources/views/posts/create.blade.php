@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Post Share')
+@section('title', 'Where can i find?')
 
 @section('content')
     <form method="POST" action="{{ route('posts.store') }}">
