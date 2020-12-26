@@ -50,5 +50,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Comment');
     }
 
-    
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }

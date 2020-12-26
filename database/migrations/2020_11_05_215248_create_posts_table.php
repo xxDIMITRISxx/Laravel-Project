@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
+            $table->string('region');
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');

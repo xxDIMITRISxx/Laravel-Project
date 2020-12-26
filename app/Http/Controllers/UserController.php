@@ -43,9 +43,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(User $user)
     {
-        
+        return view('users.show', [
+            'user' => $user
+        ]);
     }
 
     /**

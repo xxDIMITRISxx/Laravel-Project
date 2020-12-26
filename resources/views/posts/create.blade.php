@@ -9,10 +9,10 @@
             value="{{ old('title') }}"></p>
         <p>Post: <input type = "text", name="post"
             value="{{ old('post') }}"></p>
-        <p>User: <input type = "text", name="user_id"
-            value="{{ old('user_id') }}"></p>
-        <input type="submit" value="Share">
-        <a href="{{ route('posts.index') }}">Cancel</a>
+        <p>Region: <input type = "text", name="region"
+            value="{{ old('region') }}"></p>
+        <input type="submit" value="Share" class="btn btn-primary">
+        <a href="{{ route('posts.index') }}" class="btn btn-primary">Cancel</a>
     </form>
 
 @endsection

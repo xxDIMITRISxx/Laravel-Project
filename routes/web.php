@@ -30,4 +30,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/{user}', 'App\Http\Controllers\UserController@show')->name('users.show');
+
+Route::get('/posts/edit', 'App\Http\Controllers\PostController@edit')->name('posts.edit');

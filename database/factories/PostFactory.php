@@ -26,6 +26,7 @@ class PostFactory extends Factory
             
             'title' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             'description' => $this->faker->text(),
+            'region' => $this->faker->country(),
             'user_id'=>\App\Models\User::inRandomOrder()->first()->id,
         ];
     }

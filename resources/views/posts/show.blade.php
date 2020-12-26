@@ -7,7 +7,8 @@
     <ul>
         <li>User: {{ $post->user_id}}</li>
         <li>Title: {{ $post->title }}</li>
-        <li>{{ $post->description }}</li>
+        <li>Region: {{$post->region }}</li>
+        <li>Description: {{ $post->description }}</li>
     </ul>
 
     <form method="POST"
