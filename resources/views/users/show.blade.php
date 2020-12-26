@@ -7,11 +7,11 @@
                 @foreach($user->posts as $post)
                     <div class="post">
                         <a 
-                            href="{{ $post->post }}" 
+                        href="{{ route('posts.show', ['id' => $post->id]) }} "
                             class="user-link d-block p-4 mb-4 rounded h3 text-center"
                             target="nofollow"
-                            style="boarder:2px sold {{ $user->text_color }}; color: {{ $user->text_color}}"                       
-                        >{{ $post->title }}</a>
+                            style="boarder:2px sold {{ $user->text_color }}; color: {{ $user->text_color}}">{{ $post->title }}
+                        </a>
                     </div>
                 @endforeach
             </div>

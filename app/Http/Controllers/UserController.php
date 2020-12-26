@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Controller
 {
@@ -45,9 +47,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', [
-            'user' => $user
-        ]);
+        return view('users.show', ['user' => $user]);
     }
 
     /**

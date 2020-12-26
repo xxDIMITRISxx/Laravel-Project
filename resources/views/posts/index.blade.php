@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title', 'Where can i find?')
 
@@ -18,7 +18,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- <a href="{{ route('posts.create' )}}">Share Post</a> --}}
                         <ul>
                             @foreach ($posts as $post)
                                 <tr>

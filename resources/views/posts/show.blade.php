@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('title', 'Where can i find?')
 
@@ -15,8 +15,7 @@
         action="{{ route('posts.destroy', ['id' => $post->id]) }}">
         @csrf
         @method('DELETE')
-        <button> Delete</button>
+        <button class="btn btn-primary">Delete</button>
+        <a href="{{ route('posts.index' )}}" class="btn btn-primary">Back</a>
     </form>
-
-    <a href="{{ route('posts.index' )}}">Back</a>
 @endsection
