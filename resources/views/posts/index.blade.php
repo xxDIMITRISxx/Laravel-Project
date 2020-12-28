@@ -29,17 +29,8 @@
                         </ul>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>
-    
 @endsection
-
-
-{{-- <a href="{{ route('posts.create' )}}">Share Post</a>
-<ul>
-    @foreach ($posts as $post)
-        <li><a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ $post->title }} </a></li>
-    @endforeach
-</ul> --}}
-

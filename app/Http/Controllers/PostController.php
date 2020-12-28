@@ -16,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        //posts = Auth::user()->posts()->get();
+        //$posts = Auth::user()->posts()->get();
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -77,9 +77,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        if ($post->user_id !== Auth::id()) {
+        if ($post->user_id != Auth::id()) {
+            dd($id);
             return abort(404);
         }
         return view('posts.edit', [
@@ -94,9 +95,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        // $validateData = $request->validate([
+        //     'title'=> 'required|max:50',
+        //     'post'=> 'required|max:500',
+        //     'region'=> 'required|max:50',
+        // ]);
+
+        // $post = Auth::user()->posts()
+        //             ->create($request->only(['title', 'post','region']));
+        
     }
 
     /**

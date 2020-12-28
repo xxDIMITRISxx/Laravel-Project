@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -15,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //$posts = Post::all();
+        $posts = Auth::user()->posts()->get();
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -47,7 +50,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', ['user' => $user]);
+        return view('users.profile', ['user' => $user]);
     }
 
     /**

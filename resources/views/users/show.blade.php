@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
+@section('title', 'Where can i find?')
+
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6 offset-md-3">
-                @foreach($user->posts as $post)
-                    <div class="post">
-                        <a 
-                        href="{{ route('posts.show', ['id' => $post->id]) }} "
-                            class="user-link d-block p-4 mb-4 rounded h3 text-center"
-                            target="nofollow"
-                            style="boarder:2px sold {{ $user->text_color }}; color: {{ $user->text_color}}">{{ $post->title }}
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <p>Post : </p>
+    <ul>
+        <li>User: {{ $post->user_id}}</li>
+        <li>Title: {{ $post->title }}</li>
+        <li>Region: {{$post->region }}</li>
+        <li>Description: {{ $post->description }}</li>
+    </ul>
+
+    <form method="POST"
+        action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-primary">Delete</button>
+        <a href="{{ route('users.profile' )}}" class="btn btn-primary">Back</a>
+    </form>
 @endsection

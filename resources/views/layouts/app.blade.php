@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/posts') }}">
                     Where can i find?
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -56,19 +56,38 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    {{-- home button --}}
+                                    <a class="dropdown-item" href="{{ route('posts.index') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('home-form').submit();">
+                                        {{ __('Home') }}
+                                    </a>                                    
+                                    <form id="home-form" action="{{ route('posts.index') }}" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    {{-- Profile button
+                                    <a class="dropdown-item" href="{{ route('users.profile') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('profile-form').submit();">
+                                        {{ __('Profile') }}
+                                    </a>                                    
+                                    <form id="profile-form" action="{{ route('users.profile') }}" class="d-none">
+                                        @csrf
+                                    </form>     --}}
+                                    
+                                    {{-- Logout button --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
-
+                                    </a>                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>
-                                </div>
-                                
+                                    </form>     
+                                </div> 
                             </li>
                         @endguest
                     </ul>
