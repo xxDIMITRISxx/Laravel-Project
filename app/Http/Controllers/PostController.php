@@ -90,10 +90,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $post = Post::findOrFail($id);
         if ($post->user_id !== Auth::id()) {
             return abort(404);
         }
-        $post = Post::findOrFail($id);
         return view('posts.edit', compact('post'));
     }
 

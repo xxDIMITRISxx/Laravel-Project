@@ -21,7 +21,7 @@ Route::get('/posts/{id}', 'App\Http\Controllers\PostController@show')->name('pos
 
 Route::get('/posts/edit/{id}', 'App\Http\Controllers\PostController@edit')->name('posts.edit');
 
-Route::get('/posts/edit/{id}', 'App\Http\Controllers\PostController@update')->name('posts.update');
+Route::post('/posts/edit/{id}', 'App\Http\Controllers\PostController@update')->name('posts.update');
 
 Route::delete('/posts/{id}', 'App\Http\Controllers\PostController@destroy')->name('posts.destroy');
 

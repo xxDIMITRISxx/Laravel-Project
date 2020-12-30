@@ -8,7 +8,7 @@
             <div class="col-12 card">
                 <div class="card-body">
                     <h2 class="card-title">Editing Post</h2>
-                        <form method="POST" action="{{ route('posts.edit' ,[$post->id])) }}">
+                        <form method="POST" action="{{ route('posts.edit' ,[$post->id]) }}">
                             @csrf
                                 {{-- Title insertion --}}
                             <div class="row">    
