@@ -88,14 +88,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        if ($post->user_id != Auth::id()) {
+        if ($post->user_id !== Auth::id()) {
             return abort(404);
         }
-        return view('posts.edit', [
-            'post' => $post
-        ]);
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -107,15 +106,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // $validateData = $request->validate([
-        //     'title'=> 'required|max:50',
-        //     'post'=> 'required|max:500',
-        //     'region'=> 'required|max:50',
-        // ]);
+        if ($post->user_id !== Auth::id()) {
+            return abort(403);
+        }
+        $request->validate([
+            'title'=> 'required|max:50',
+            'post'=> 'required|max:500',
+            'region'=> 'required|max:50',
+        ]);
 
-        // $post = Auth::user()->posts()
-        //             ->create($request->only(['title', 'post','region']));
+        $post->uptade($request->only(['title', 'post', 'region']));
+
+        return redirect()->to('/posts');
         
+       
     }
 
     /**

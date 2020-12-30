@@ -20,9 +20,9 @@
                                     <td> <a href="{{ route('posts.show',['id' => $post->id]) }}">{{ $post->title }}</a></td>
                                     <td> {{ $post->region}} </td>
                                     @if (Auth::user()->username == $post->user->username)
-                                        <td> <a href="{{ route('posts.edit')}}">Edit</a></td>
+                                        <td> <a href="{{ route('posts.edit', ['id' => $post->id]) }}">Edit</a></td>
                                     @else
-                                    <td> <a href="{{ route('posts.show', ['id' => $post->id]) }}">View</a></td>
+                                        <td> <a href="{{ route('posts.show', ['id' => $post->id]) }}">View</a></td>
                                     @endif
                                 </tr>
                             @endforeach
