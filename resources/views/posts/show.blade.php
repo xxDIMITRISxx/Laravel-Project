@@ -7,27 +7,21 @@
         <div class="col-12 card">
             <div class = "card-body">
                 <h2 class="card-title">Post</h2>
-                
-                <table class="table table-bordered">
-                    <thead>
-                        <tr class="table-primary">
-                            <th>User:</th>
-                            <th>Title:</th>
-                            <th>Region:</th>
-                            <th>Description:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ul>
-                            <tr>
-                                <td>{{ $post->user_id}}</td>
-                                <td>{{ $post->title }}</td>
-                                <td>{{$post->region }}</td>
-                                <td>{{ $post->description }}</td>
-                            </tr>                                
-                        </ul>
-                    </tbody>
-                </table>
+                    <p><b>User:</b> {{ $post->user_id}} </p>
+                    <p><b>Title:</b>{{ $post->title }}</p>
+                    <p><b>Region:</b> {{$post->region }}</p>
+                    <p><b>Description:</b> {{ $post->description }}</p>
+                    @if (Auth::user()->username == $post->user->username)
+                    <form method="POST"
+                        action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-primary">Delete</button>
+                        <a href="{{ route('posts.index' )}}" class="btn btn-dark">Back</a>
+                    </form>
+                    @else 
+                    <a href="{{ route('posts.index' )}}" class="btn btn-dark">Back</a>
+                    @endif
                 </div>
             </div>
         </div>

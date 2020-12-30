@@ -22,8 +22,8 @@
                             @foreach ($posts as $post)
                                 <tr>
                                     <td><a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ $post->title }} </td>
-                                    <td> {{ $post->region}} </td>
-                                    <td> {{ ($post->user_id) }} </td>
+                                    <td> {{ $post->region }} </td>
+                                    <td><a href="{{ route('users.show', ['user' => $post->user->username]) }}"> {{ ($post->user->username) }} </td>
                                 </tr>                                
                             @endforeach
                         </ul>

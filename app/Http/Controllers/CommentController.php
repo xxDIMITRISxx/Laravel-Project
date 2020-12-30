@@ -2,24 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Auth;
 
-class UserController extends Controller
+class CommentController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -27,9 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //$posts = Post::all();
-        $posts = Auth::user()->posts()->get();
-        return view('users.index', ['posts' => $posts]);
+        //
     }
 
     /**
@@ -59,9 +43,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('users.show', ['user' => $user]);
+        //
     }
 
     /**

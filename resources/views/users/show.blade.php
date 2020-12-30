@@ -1,21 +1,50 @@
 @extends('layouts.app')
 
-@section('title', 'Where can i find?')
-
 @section('content')
-    <p>Post : </p>
-    <ul>
-        <li>User: {{ $post->user_id}}</li>
-        <li>Title: {{ $post->title }}</li>
-        <li>Region: {{$post->region }}</li>
-        <li>Description: {{ $post->description }}</li>
-    </ul>
-
-    <form method="POST"
-        action="{{ route('posts.destroy', ['id' => $post->id]) }}">
-        @csrf
-        @method('DELETE')
-        <button class="btn btn-primary">Delete</button>
-        <a href="{{ route('users.profile' )}}" class="btn btn-primary">Back</a>
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 card">
+                <div class="card-body">
+                    <h2 class="card-title"> <b>{{ $user->username}}</b> posts</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>  Title</th>
+                                <th>Region</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($user->posts as $post)
+                                <tr>
+                                    <td> <a href="{{ route('posts.show',['id' => $post->id]) }}">{{ $post->title }}</a></td>
+                                    <td> {{ $post->region}} </td>
+                                    @if (Auth::user()->username == $post->user->username)
+                                        <td> <a href="{{ route('posts.edit')}}">Edit</a></td>
+                                    @else
+                                    <td> <a href="{{ route('posts.show', ['id' => $post->id]) }}">View</a></td>
+                                    @endif
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <a href="{{ route('posts.index' )}}" class="btn btn-dark">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+{{-- 
+@foreach($user->posts as $post)
+                    <div class="post">
+                        <a 
+                        href="{{ route('posts.show', ['id' => $post->id]) }} "
+                            class="user-link d-block p-4 mb-4 rounded h3 text-center"
+                            target="nofollow"
+                            style="boarder:2px sold {{ $user->text_color }}; color: {{ $user->text_color}}">{{ $post->title }}
+                        </a>
+                    </div>
+                @endforeach --}}
+
+               {{--  <td> <a href="/posts/edit/{{ $post->id }}">Edit</a></td> --}}

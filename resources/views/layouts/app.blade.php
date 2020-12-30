@@ -64,19 +64,19 @@
                                                      document.getElementById('home-form').submit();">
                                         {{ __('Home') }}
                                     </a>                                    
-                                    <form id="home-form" action="{{ route('posts.index') }}" class="d-none">
+                                    <form id="home-form" action="{{ route('posts.index') }}" method="GET" class="d-none">
                                         @csrf
                                     </form>
 
-                                    {{-- Profile button
-                                    <a class="dropdown-item" href="{{ route('users.profile') }}"
+                                    {{-- profile button --}}
+                                    <a class="dropdown-item" href="{{ route('users.show', Auth::user()->username) }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('profile-form').submit();">
                                         {{ __('Profile') }}
                                     </a>                                    
-                                    <form id="profile-form" action="{{ route('users.profile') }}" class="d-none">
+                                    <form id="profile-form" action="{{ route('users.show', Auth::user()->username) }}" method="GET" class="d-none">
                                         @csrf
-                                    </form>     --}}
+                                    </form>
                                     
                                     {{-- Logout button --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
