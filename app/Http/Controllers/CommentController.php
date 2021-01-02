@@ -83,22 +83,19 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, $id)
     {
         $request->validate([
         'description' => 'required|max:1000',
          ]);
 
-         $comment->update($request->only(['description', 'post_id']));
-        // $comment = Comment::findOrFail($id);
+        //  $comment->update($request->only(['description', 'post_id']));
+        $comment = Comment::findOrFail($id);
 
-        // $comment->description = $request->description;
-        // $comment->user()->associate($request->user());
-        // $comment->post_id = Auth::user()->id;
+        $comment->description = $request->description;
 
-        // $comment->update();
-       // $post->comments()->uptade($comment);
-       // return redirect()->to(route('posts.show', ['post' => $comment->post]));
+         $comment->update();
+
          return redirect()->route('posts.show', ['id' => $comment->post_id]);
     }
 
