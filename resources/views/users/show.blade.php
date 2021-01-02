@@ -9,7 +9,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>  Title</th>
+                                <th>Title</th>
                                 <th>Region</th>
                                 <th>Actions</th>
                             </tr>

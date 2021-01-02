@@ -15,6 +15,7 @@
                             <th>Post Title</th>
                             <th>Region</th>
                             <th>User</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,7 +24,8 @@
                                 <tr>
                                     <td><a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ $post->title }} </td>
                                     <td> {{ $post->region }} </td>
-                                    <td><a href="{{ route('users.show', ['user' => $post->user->username]) }}"> {{ ($post->user->username) }} </td>
+                                    <td> <b><a href="{{ route('users.show', ['user' => $post->user->username]) }}"> {{ ($post->user->username) }} </b> </td>
+                                    <td> {{ $post->created_at}} </td>
                                 </tr>                                
                             @endforeach
                         </ul>
@@ -32,5 +34,10 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="d-flex justify-content-center">
+            {!! $posts->links() !!}
+        </div>
     </div>
+   
 @endsection

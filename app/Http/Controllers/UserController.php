@@ -28,7 +28,7 @@ class UserController extends Controller
     public function index()
     {
         //$posts = Post::all();
-        $posts = Auth::user()->posts()->get();
+        $posts = Auth::user()->posts()->sortByDesc('created_at')->paginate(2);
         return view('users.index', ['posts' => $posts]);
     }
 

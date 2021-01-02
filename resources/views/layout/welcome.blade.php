@@ -17,11 +17,11 @@
         
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <h4><p>Ask for help to find anything.</p></h4>
                     <h4><p>Help people to find what are they looking for.</p></h4>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                 <h4><p>Join now in <b>Where can i find? </b></p></h4>
                 <p> 
                     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
@@ -42,7 +42,6 @@
                 </p>
                 </div>
             </div>
-        </div>
-
+        </div>s
     </body>
 </html>

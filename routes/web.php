@@ -28,3 +28,11 @@ Route::delete('/posts/{id}', 'App\Http\Controllers\PostController@destroy')->nam
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/profile/{user}', 'App\Http\Controllers\UserController@show')->name('users.show');
+
+Route::post('/comment/store', 'App\Http\Controllers\CommentController@store')->name('comment.store');
+
+Route::get('/comment/edit/{id}', 'App\Http\Controllers\CommentController@edit')->name('comment.edit');
+
+Route::post('/comment/edit/{id}', 'App\Http\Controllers\CommentController@update')->name('comment.update');
+
+Route::delete('/comment/{comment}', 'App\Http\Controllers\CommentController@destroy')->name('comment.destroy');

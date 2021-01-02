@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -26,7 +28,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        //$posts = Post::paginate(10);
         //$posts = Auth::user()->posts()->get();
         return view('posts.index', ['posts' => $posts]);
     }
@@ -64,7 +67,7 @@ class PostController extends Controller
         $p->user_id = Auth::user()->id;
         $p->save();
 
-        session()->flash('message', 'Post was created.');
+        //session()->flash('message', 'Post was created.');
 
         return redirect()->route('posts.index');
         
@@ -79,7 +82,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.show', ['post' => $post]);
+        $comments = Comment::where('post_id', $post->id)->paginate(5);                                   
+        return view('posts.show', ['post' => $post, 'comments' => $comments]);
     }
 
     /**
@@ -104,23 +108,26 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        if ($post->user_id !== Auth::id()) {
-            return abort(403);
-        }
+
         $request->validate([
             'title'=> 'required|max:50',
             'post'=> 'required|max:500',
             'region'=> 'required|max:50',
         ]);
-
-        $post->uptade($request->only(['title', 'post', 'region']));
-
-        return redirect()->to('/posts');
         
-       
-    }
+        $post = Post::findOrFail($id);
+
+        $post->title = $request->title;
+        $post->description = $request->post;
+        $post->region = $request->region;
+        $post->user_id = Auth::user()->id;
+        
+        $post->update();
+
+        return redirect()->route('users.show', ['user' => $post->user->username]);
+    }   
 
     /**
      * Remove the specified resource from storage.

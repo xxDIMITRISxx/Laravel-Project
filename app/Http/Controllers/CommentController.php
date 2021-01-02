@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Auth;
 
 class CommentController extends Controller
 {
@@ -34,7 +37,16 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'description' => 'required|max:1000',
+        ]);
+
+        $comment = new Comment;
+        $comment->description = $request->get('description');
+        $comment->user()->associate($request->user());
+        $post = Post::find($request->get('post_id'));
+        $post->comments()->save($comment);
+        return back();
     }
 
     /**
@@ -56,7 +68,12 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        if ($comment->user_id !== Auth::id()) {
+            return abort(404);
+        }
+        //return view('comments.edit', ['id' => $comment->id]);
+        return view('comments.edit', compact('comment'));
     }
 
     /**
@@ -66,9 +83,23 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $request->validate([
+        'description' => 'required|max:1000',
+         ]);
+
+         $comment->update($request->only(['description', 'post_id']));
+        // $comment = Comment::findOrFail($id);
+
+        // $comment->description = $request->description;
+        // $comment->user()->associate($request->user());
+        // $comment->post_id = Auth::user()->id;
+
+        // $comment->update();
+       // $post->comments()->uptade($comment);
+       // return redirect()->to(route('posts.show', ['post' => $comment->post]));
+         return redirect()->route('posts.show', ['id' => $comment->post_id]);
     }
 
     /**
@@ -79,6 +110,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        
+        return back();
     }
 }

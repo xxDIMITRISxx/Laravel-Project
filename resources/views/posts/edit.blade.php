@@ -8,7 +8,8 @@
             <div class="col-12 card">
                 <div class="card-body">
                     <h2 class="card-title">Editing Post</h2>
-                        <form method="POST" action="{{ route('posts.edit' ,[$post->id]) }}">
+                        <form method="POST" action="{{ route('posts.update' , $post->id) }}">
+                            
                             @csrf
                                 {{-- Title insertion --}}
                             <div class="row">    
@@ -38,14 +39,14 @@
                                     <div class="form-group">
                                         <label for="post">Post</label>
                                         <input type="text" name="post" class="form-control @error('post') is-invalid @enderror" placeholder="Where can i find..."
-                                        value="{{ $post->post }}">
+                                        value="{{ $post->description }}">
                                         @if ($errors->first('post'))
                                         <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                                         @endif
                                     </div>
                                 </div> 
                             </div>
-                            <input type="submit" value="Share" class="btn btn-primary">
+                            <input type="submit" value="Save Changes" class="btn btn-primary">
                             <a href="{{ route('posts.index') }}" class="btn btn-dark">Cancel</a>
                         </form>
                 </div>
