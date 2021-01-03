@@ -20,6 +20,7 @@
                                 <textarea name="description" id="comment" type="text" class="form-control @error('description') is-invalid @enderror" placeholder="Add Comment..." rows="4"></textarea>
                                 <br>
                                 <input type="submit" value="Comment" class="btn btn-primary">
+                                <a href="{{ route('posts.show', $comment->post_id)}}" class="btn btn-dark">Back</a>
                             </div>
                         </div>
                     </form>

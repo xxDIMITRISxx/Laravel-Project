@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 
@@ -36,3 +38,12 @@ Route::get('/comment/edit/{id}', 'App\Http\Controllers\CommentController@edit')-
 Route::post('/comment/edit/{id}', 'App\Http\Controllers\CommentController@update')->name('comment.update');
 
 Route::delete('/comment/{comment}', 'App\Http\Controllers\CommentController@destroy')->name('comment.destroy');
+
+// Route::get('/send', 'NotifyController@index');
+
+// Route::get('mail', function() {
+//     $order = App\Order::find(1);
+
+//     return (new App\Notifications\NewComment($order))
+//                 ->toMail($order->user);
+// });

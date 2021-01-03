@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -46,6 +47,8 @@ class CommentController extends Controller
         $comment->user()->associate($request->user());
         $post = Post::find($request->get('post_id'));
         $post->comments()->save($comment);
+        // $user = User::find($request->get('post_id'));
+        // $user->notify(new App\Notifications\NewComment);
         return back();
     }
 
@@ -95,6 +98,8 @@ class CommentController extends Controller
         $comment->description = $request->description;
 
          $comment->update();
+
+         
 
          return redirect()->route('posts.show', ['id' => $comment->post_id]);
     }
