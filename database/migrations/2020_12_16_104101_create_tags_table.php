@@ -20,7 +20,7 @@ class CreateTagsTable extends Migration
             $table->unsignedBigInteger('post_id');
 
             $table->foreign('post_id')->references('id')
-                ->on('posts')->onDelete('cascade')->onUptade('cascade');
+                ->on('posts')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

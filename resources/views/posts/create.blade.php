@@ -37,8 +37,12 @@
                                     <div class="col-12 col-md-12">
                                     <div class="form-group">
                                         <label for="post">Post</label>
-                                        <input type="text" name="post" class="form-control @error('post') is-invalid @enderror" placeholder="Where can i find..."
-                                        value="{{ old('post') }}">
+                                        <textarea name="post" id="description" type="text" class="form-control @error('post') is-invalid @enderror" placeholder="Where can i find..." rows="4" value="{{ old('post') }}"></textarea>
+                                        {{-- <input type="text" name="post" class="form-control @error('post') is-invalid @enderror" placeholder="Where can i find..."
+                                        value="{{ old('post') }}"> --}}
+                                        <div class="form-group">
+                                            
+                                        </div>
                                         @if ($errors->first('post'))
                                         <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                                         @endif

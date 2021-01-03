@@ -13,6 +13,7 @@
                     <p><b>Title:</b>{{ $post->title }}</p>
                     <p><b>Region:</b> {{$post->region }}</p>
                     <p><b>Description:</b> {{ $post->description }}</p>
+                    <p><b>Tags</b> {{ $post->tags->name }} </p>
                     @if (Auth::user()->username == $post->user->username)
                     <form method="POST"
                         action="{{ route('posts.destroy', ['id' => $post->id]) }}">
