@@ -12,8 +12,8 @@
 
     <style>
         html, body {
-            background-color: #fff;
-            color: #208bc0;
+            background-color: rgb(255, 255, 255);
+            color: #000000;
             font-family: 'Nunito', sans-serif;
             font-weight: 200;
             height: 100vh;
@@ -90,6 +90,7 @@
                 </p>
                 </div>
             </div>
-        </div>s
+        </div>
     </body>
+    
 </html>

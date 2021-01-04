@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Tag;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Auth;
@@ -65,10 +66,15 @@ class PostController extends Controller
         $p->description = $validateData['post'];
         $p->region = $validateData['region'];
         $p->user_id = Auth::user()->id;
+        $image = $request->file('file');
+        if($image != null) {
+            $imageName = time().'.'.$image->extension();
+            $image->move(public_path('images'),$imageName);
+            $p->postImage = $imageName;
+        }
+
         $p->save();
-
-        //session()->flash('message', 'Post was created.');
-
+        
         return redirect()->route('posts.index');
         
     }

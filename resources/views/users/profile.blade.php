@@ -30,17 +30,3 @@
         </div>
     </div>
 @endsection
-
-{{-- 
-@foreach($user->posts as $post)
-                    <div class="post">
-                        <a 
-                        href="{{ route('posts.show', ['id' => $post->id]) }} "
-                            class="user-link d-block p-4 mb-4 rounded h3 text-center"
-                            target="nofollow"
-                            style="boarder:2px sold {{ $user->text_color }}; color: {{ $user->text_color}}">{{ $post->title }}
-                        </a>
-                    </div>
-                @endforeach --}}
-
-               {{--  <td> <a href="/posts/edit/{{ $post->id }}">Edit</a></td> --}}

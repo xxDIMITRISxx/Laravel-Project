@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password',];
+    protected $fillable = ['username', 'email', 'password','adminRole'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -54,5 +54,13 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'username';
+    }
+
+    /**
+     * Get the user that owns the code.
+     */
+    public function code()
+    {
+        return $this->HasOne('App\Models\Code'); //requires use App\Models\User
     }
 }

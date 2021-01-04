@@ -39,11 +39,3 @@ Route::post('/comment/edit/{id}', 'App\Http\Controllers\CommentController@update
 
 Route::delete('/comment/{comment}', 'App\Http\Controllers\CommentController@destroy')->name('comment.destroy');
 
-// Route::get('/send', 'NotifyController@index');
-
-// Route::get('mail', function() {
-//     $order = App\Order::find(1);
-
-//     return (new App\Notifications\NewComment($order))
-//                 ->toMail($order->user);
-// });

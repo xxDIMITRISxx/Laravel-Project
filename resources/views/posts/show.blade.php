@@ -9,12 +9,22 @@
                 <h2 class="card-title">Post</h2>
             </div>
             <div class = "card-body">
-                    <p><b>User:</b> {{ $post->user_id}} </p>
+                    <p><b>User Code:</b> <b><a href="{{ route('users.show', ['user' => $post->user->username]) }}"> {{ ($post->user->code->code) }} </a> </b></p>
                     <p><b>Title:</b>{{ $post->title }}</p>
                     <p><b>Region:</b> {{$post->region }}</p>
                     <p><b>Description:</b> {{ $post->description }}</p>
-                    <p><b>Tags</b> {{ $post->tags->name }} </p>
-                    @if (Auth::user()->username == $post->user->username)
+                    <p><b>Tags: </b>
+                        @foreach($post->tags as $tag)
+                            #{{$tag->name}}
+                        @endforeach
+                    </p> 
+                    
+                    @if($post->postImage != null)
+                        <img src="/images/{{$post->postImage}}"/>
+                    @endif
+
+                    <br>
+                    @if ((Auth::user()->username == $post->user->username) || (Auth::user()->username == 'ADMIN'))
                     <form method="POST"
                         action="{{ route('posts.destroy', ['id' => $post->id]) }}">
                         @csrf
@@ -57,14 +67,20 @@
                 </div>
                     <div class="card-footer">
                         <div class="d-flex">
-                            @if (Auth::user()->id == $comment->user->id)
-                            <a href="{{ route('comment.edit', ['id' => $comment->id]) }}" class="btn btn-primary">Edit</a>
+                            @if ((Auth::user()->id == $comment->user->id))
+                                <a href="{{ route('comment.edit', ['id' => $comment->id]) }}" class="btn btn-primary">Edit</a>
                                 <form action="{{ route('comment.destroy', ['comment' => $comment]) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-dark">Delete</button>
                                 </form>
-                               
+
+                            @elseif ((Auth::user()->username == "ADMIN"))
+                                <form action="{{ route('comment.destroy', ['comment' => $comment]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-dark">Delete</button>
+                            </form>
                             @endif
                         </div>
                     </div>
